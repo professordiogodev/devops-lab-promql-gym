@@ -1,0 +1,60 @@
+# Your twelve PromQL expressions. Replace each `expr: TODO` with ONE query.
+#
+# "time" is when the question is asked, measured from the start of the recorded night (2026-01-01 00:00:00 UTC).
+# In the Prometheus UI (http://localhost:9099) type the query and set the Evaluation time (Table tab) to that moment.
+# The checker evaluates your expression at that moment and compares the RESULT with the right answer, so any correct way of asking is fine.
+# A query that is just a number will not pass: ask the data.
+#
+# Metrics you will use:  beanie_http_requests_total{service,method,route,status}
+#                        beanie_http_request_duration_seconds_bucket / _count / _sum {service,route,le}
+#                        beanie_orders_total{status}   beanie_payments_total{result}
+#                        process_resident_memory_bytes{service}   up{job,instance}
+questions:
+  - id: q01
+    time: "6h00m"
+    question: "What is the total request rate of the gateway (all routes, all statuses) in requests per second, measured over the last 5 minutes?"
+    expr: TODO
+  - id: q02
+    time: "4h40m"
+    question: "What share (0 to 1) of the gateway's requests answered with a 5xx status, over the last 5 minutes? (One number, all routes together.)"
+    expr: TODO
+  - id: q03
+    time: "3h15m"
+    question: "What was the 95th percentile latency of the payments service, in seconds, over the last 5 minutes?"
+    expr: TODO
+  - id: q04
+    time: "4h40m"
+    question: "Which service had the highest 5xx ratio over the last 5 minutes? Return ONE series with the label service, whose value is that ratio."
+    expr: TODO
+  - id: q05
+    time: "6h00m"
+    question: "How many orders ended with status paid during the last hour? (Careful: the orders service restarted during the night.)"
+    expr: TODO
+  - id: q06
+    time: "6h00m"
+    question: "What share (0 to 1) of all payments were declined, over the whole six hours?"
+    expr: TODO
+  - id: q07
+    time: "5h10m"
+    question: "How many Beanie targets were up at that moment?"
+    expr: TODO
+  - id: q08
+    time: "6h00m"
+    question: "At what speed does the memory of the orders service grow, in bytes per second, looking at the last hour?"
+    expr: TODO
+  - id: q09
+    time: "6h00m"
+    question: "If the trend of the last hour continues, how many bytes of memory will the orders service use two hours later?"
+    expr: TODO
+  - id: q10
+    time: "3h40m"
+    question: "What share (0 to 1) of the gateway's requests were answered in 0.5 seconds or less, over the last hour?"
+    expr: TODO
+  - id: q11
+    time: "6h00m"
+    question: "What was the availability of the gateway over the whole night: 1 minus the share of requests that answered 5xx, over 6 hours?"
+    expr: TODO
+  - id: q12
+    time: "6h00m"
+    question: "Rank the services by request rate over the last 5 minutes, highest first: one series per service (label service), value in requests per second."
+    expr: TODO
