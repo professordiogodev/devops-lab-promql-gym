@@ -22,11 +22,17 @@
 
 ## 🎬 The situation
 
-<p align="center"><img src="assets/gifs/situation.gif" width="300" alt="Animation: histogram_quantile(0.95, ...)"></p>
+<p align="center"><img src="assets/gifs/situation.gif" width="300" alt="A time window sliding over a metric line, with the evaluation time marked"></p>
 
-Between three and six in the morning, something went wrong with Beanie. Customers complained, the on-call engineer was woken up, restarted something, went back to bed, and left a note in the ticket that is three words long: *"fixed, was slow"*. The next morning the team lead asks four questions: **what exactly happened, when, how bad was it, and could it happen again tonight?**
+```text
+GYM CARD - Beanie, the night of 2026-01-01
+Rounds  : 12 questions, easy to brutal
+Scoring : each correct answer is checked against the real data (1% tolerance)
+Goal    : 12 / 12, then explain the night in plain words
+Coach   : none. The on-call engineer left a note that says "fixed, was slow".
+```
 
-Luckily the metrics were recorded. Six hours of them, from five services, are sitting in a Prometheus. You do not need the on-call engineer: you need to be able to read a time series database the way you read a log. That is a skill, and like any skill it is built by repetition, so this lab is a gym: twelve questions, each with a precise answer, each asked at a precise moment of the night. The question tells you **what** to compute; your job is to find **how** in PromQL.
+Between three and six in the morning something went wrong with Beanie. Six hours of metrics from five services sit in a local Prometheus, and the team lead wants four answers by lunch: **what happened, when, how bad, and could it happen tonight?** Reading a time series database is a skill, and skills come from repetition, so this is a gym. Every question tells you *what* to compute and *when*; finding *how* in PromQL is the workout.
 
 > [!IMPORTANT]
 > **Your mission**
@@ -39,7 +45,7 @@ Luckily the metrics were recorded. Six hours of them, from five services, are si
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 0 - Start the night
+## Warm-up - Start the night
 
 Fork this repository, clone your fork and run:
 
@@ -56,7 +62,7 @@ Open http://localhost:9099. The recorded night starts at **2026-01-01 00:00:00 U
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 1 - The workout
+## Round 1 - The workout
 
 <p align="center"><img src="assets/gifs/recon.gif" width="300" alt="Animation: rate(beanie_http_requests_total[5m])"></p>
 
@@ -76,7 +82,7 @@ You can check the metric names with `{__name__=~"beanie_.*|process_.*|up"}` in t
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 2 - Tell the story
+## Round 2 - Tell the story
 
 Using only your queries (change the evaluation time and explore), write down in `notes.md` (and in your submission): **what happened, when and how bad.** There are three incidents and one slow leak in the night. For each, name the service, the start and end time, and the size (latency, error share, or number of instances). Then answer the team lead's last question: *could it happen again tonight?*
 
@@ -85,7 +91,7 @@ Using only your queries (change the evaluation time and explore), write down in 
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 3 - Prove it
+## Final score - Prove it
 
 <p align="center"><img src="assets/gifs/verify.gif" width="300" alt="A terminal running the lab&#x27;s verify script and printing PASS lines, ending with ALL CHECKS PASSED"></p>
 
